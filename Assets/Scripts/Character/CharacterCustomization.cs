@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace KidsTest
@@ -28,6 +29,11 @@ namespace KidsTest
                 customPart.PartMesh.sharedMesh = mesh;
                 break;
             }
+        }
+
+        public void SetNewBodyColor()
+        {
+            //m_CustomizationParts.Select(x => x.Part == )
         }
     }
 }

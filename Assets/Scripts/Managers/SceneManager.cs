@@ -10,7 +10,7 @@ namespace KidsTest
     {
         [SerializeField, Scene] private string m_LogInScene; 
         [SerializeField, Scene] private string m_LobbyScene; 
-        [SerializeField, Scene] private string m_SoundScene;
+        [SerializeField, Scene] private string m_GameScene;
 
         public void LoadLogInScene()
         {
@@ -22,9 +22,9 @@ namespace KidsTest
             UnitySceneManager.LoadScene(m_LobbyScene);
         }
 
-        public void LoadSoundScene()
+        public void LoadGameScene()
         {
-            UnitySceneManager.LoadScene(m_SoundScene);
+            UnitySceneManager.LoadScene(m_GameScene);
         }
     }
 }

@@ -8,9 +8,7 @@ namespace KidsTest
     {
         Body,
         Accessory,
-        Face,
         Glasses,
-        Gloves,
         Hair,
         Hat,
         Pants,
@@ -43,11 +41,52 @@ namespace KidsTest
             base.Awake();
 
             m_InstantiatedCharacter = Instantiate(m_CharacterPrefab, m_CharacterPlacement);
-        
-            foreach (CustomParts customPart in m_CustomParts)
+
+            LoadCharacterIndex();
+        }
+
+        private void LoadCharacterIndex()
+        {
+            CharacterDataSerialized charData = AppSaveManager.Instance.LoadCharacterData();
+
+            if (charData != null)
             {
-                m_PartsIndex[customPart.Part] = 0;
+                foreach (CustomParts customPart in m_CustomParts)
+                {
+                    int index = customPart.Part switch
+                    {
+                        CustomCharacterParts.Body => charData.BodyIndex,
+                        CustomCharacterParts.Accessory => charData.AccessoryIndex,
+                        CustomCharacterParts.Glasses => charData.GlassesIndex,
+                        CustomCharacterParts.Hair => charData.HairIndex,
+                        CustomCharacterParts.Hat => charData.HatIndex,
+                        CustomCharacterParts.Pants => charData.PantsIndex,
+                        CustomCharacterParts.Outer => charData.OuterIndex,
+                        CustomCharacterParts.Shoes => charData.ShoesIndex
+                    };
+
+                    m_PartsIndex[customPart.Part] = index;
+                    Mesh mesh = customPart.Meshes[index].GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                    m_InstantiatedCharacter.SetNewPart(customPart.Part, mesh);
+                }
             }
+            else
+            {
+                foreach (CustomParts customPart in m_CustomParts)
+                {
+                    m_PartsIndex[customPart.Part] = 0;
+                }
+            }
+        }
+
+        private void Start()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene current)
+        {
+            AppSaveManager.Instance.SaveCharacterData(m_PartsIndex);
         }
 
         public void SetNextPart(CustomCharacterParts part)
@@ -86,9 +125,7 @@ namespace KidsTest
             {
                 CustomCharacterParts.Body => "Body",
                 CustomCharacterParts.Accessory => "Accessory",
-                CustomCharacterParts.Face => "Face",
                 CustomCharacterParts.Glasses => "Glasses",
-                CustomCharacterParts.Gloves => "Gloves",
                 CustomCharacterParts.Hair => "Hair",
                 CustomCharacterParts.Hat => "Hat",
                 CustomCharacterParts.Pants => "Pants",
@@ -96,6 +133,5 @@ namespace KidsTest
                 CustomCharacterParts.Shoes => "Shoes"
             };
         }
-
     }
 }
