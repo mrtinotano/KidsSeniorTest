@@ -8,7 +8,7 @@ namespace KidsTest
         [System.Serializable]
         private struct CustomizationPart
         {
-            public CustomCharacterParts Part;
+            public CustomCharacterPartType Part;
             public SkinnedMeshRenderer PartMesh;
         }
 
@@ -19,7 +19,7 @@ namespace KidsTest
 
         }
 
-        public void SetNewPart(CustomCharacterParts part, Mesh mesh)
+        public void SetNewPart(CustomCharacterPartType part, Mesh mesh)
         {
             foreach (CustomizationPart customPart in m_CustomizationParts)
             {

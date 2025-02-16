@@ -8,7 +8,7 @@ namespace KidsTest
     public class CustomizationPartSelection : MonoBehaviour
     {
         [Header("Part Type")]
-        [SerializeField] private CustomCharacterParts m_Part;
+        [SerializeField] private CustomCharacterPartType m_Part;
 
         [Header("UI")]
         [SerializeField] private Button m_PreviousSelectionButton;

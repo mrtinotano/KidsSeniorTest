@@ -2905,24 +2905,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CustomizationParts:
   - Part: 0
-    PartMesh: {fileID: 1759769980657932399}
-  - Part: 1
     PartMesh: {fileID: 1217028230463544018}
-  - Part: 2
-    PartMesh: {fileID: 1592512377022278511}
-  - Part: 3
+  - Part: 1
     PartMesh: {fileID: 5682255029193504394}
-  - Part: 4
-    PartMesh: {fileID: 1873324186262791723}
-  - Part: 5
+  - Part: 2
     PartMesh: {fileID: 3964490572282951599}
-  - Part: 6
+  - Part: 3
     PartMesh: {fileID: 5241478250822396027}
-  - Part: 7
+  - Part: 4
     PartMesh: {fileID: 8080190713503715051}
-  - Part: 8
+  - Part: 5
     PartMesh: {fileID: 1836318369924162559}
-  - Part: 9
+  - Part: 6
     PartMesh: {fileID: 5660051837513889347}
 --- !u!1 &8013760677192718473
 GameObject:

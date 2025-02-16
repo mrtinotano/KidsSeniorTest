@@ -11,20 +11,19 @@ namespace KidsTest
     {
         private string SaveFilePath => Application.persistentDataPath + "/save.data";
 
-        public void SaveCharacterData(Dictionary<CustomCharacterParts, int> partsIndex)
+        public void SaveCharacterData(Dictionary<CustomCharacterPartType, int> partsIndex)
         {
             try
             {
                 CharacterDataSerialized charData = new CharacterDataSerialized()
                 {
-                    BodyIndex = partsIndex[CustomCharacterParts.Body],
-                    AccessoryIndex = partsIndex[CustomCharacterParts.Accessory],
-                    GlassesIndex = partsIndex[CustomCharacterParts.Glasses],
-                    HairIndex = partsIndex[CustomCharacterParts.Hair],
-                    HatIndex = partsIndex[CustomCharacterParts.Hat],
-                    PantsIndex = partsIndex[CustomCharacterParts.Pants],
-                    OuterIndex = partsIndex[CustomCharacterParts.Outer],
-                    ShoesIndex = partsIndex[CustomCharacterParts.Shoes]
+                    AccessoryIndex = partsIndex[CustomCharacterPartType.Accessory],
+                    GlassesIndex = partsIndex[CustomCharacterPartType.Glasses],
+                    HairIndex = partsIndex[CustomCharacterPartType.Hair],
+                    HatIndex = partsIndex[CustomCharacterPartType.Hat],
+                    PantsIndex = partsIndex[CustomCharacterPartType.Pants],
+                    OuterIndex = partsIndex[CustomCharacterPartType.Outer],
+                    ShoesIndex = partsIndex[CustomCharacterPartType.Shoes]
                 };
 
                 FileStream dataStream = new FileStream(SaveFilePath, FileMode.Create);

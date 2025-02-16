@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace KidsTest
 {
-    public enum CustomCharacterParts
+    public enum CustomCharacterPartType
     {
-        Body,
         Accessory,
         Glasses,
         Hair,
@@ -18,23 +17,16 @@ namespace KidsTest
 
     public class CustomizationManager : Singleton<CustomizationManager>
     {
-        [System.Serializable]
-        private struct CustomParts
-        {
-            public CustomCharacterParts Part;
-            public GameObject[] Meshes;
-        }
-
         [Header("Character")]
         [SerializeField] private CharacterCustomization m_CharacterPrefab;
         [SerializeField] private Transform m_CharacterPlacement;
 
         [Header("Parts")]
-        [SerializeField] private CustomParts[] m_CustomParts;
+        [SerializeField] private CustomizationPartsSO[] m_CustomParts;
 
         private CharacterCustomization m_InstantiatedCharacter;
 
-        private Dictionary<CustomCharacterParts, int> m_PartsIndex = new Dictionary<CustomCharacterParts, int>();
+        private Dictionary<CustomCharacterPartType, int> m_PartsIndex = new Dictionary<CustomCharacterPartType, int>();
 
         protected override void Awake()
         {
@@ -51,28 +43,28 @@ namespace KidsTest
 
             if (charData != null)
             {
-                foreach (CustomParts customPart in m_CustomParts)
+                foreach (CustomizationPartsSO customPart in m_CustomParts)
                 {
                     int index = customPart.Part switch
                     {
-                        CustomCharacterParts.Body => charData.BodyIndex,
-                        CustomCharacterParts.Accessory => charData.AccessoryIndex,
-                        CustomCharacterParts.Glasses => charData.GlassesIndex,
-                        CustomCharacterParts.Hair => charData.HairIndex,
-                        CustomCharacterParts.Hat => charData.HatIndex,
-                        CustomCharacterParts.Pants => charData.PantsIndex,
-                        CustomCharacterParts.Outer => charData.OuterIndex,
-                        CustomCharacterParts.Shoes => charData.ShoesIndex
+                        CustomCharacterPartType.Accessory => charData.AccessoryIndex,
+                        CustomCharacterPartType.Glasses => charData.GlassesIndex,
+                        CustomCharacterPartType.Hair => charData.HairIndex,
+                        CustomCharacterPartType.Hat => charData.HatIndex,
+                        CustomCharacterPartType.Pants => charData.PantsIndex,
+                        CustomCharacterPartType.Outer => charData.OuterIndex,
+                        CustomCharacterPartType.Shoes => charData.ShoesIndex
                     };
 
                     m_PartsIndex[customPart.Part] = index;
-                    Mesh mesh = customPart.Meshes[index].GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                    GameObject part = customPart.CustomParts[index];
+                    Mesh mesh = part ? part.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh : null;
                     m_InstantiatedCharacter.SetNewPart(customPart.Part, mesh);
                 }
             }
             else
             {
-                foreach (CustomParts customPart in m_CustomParts)
+                foreach (CustomizationPartsSO customPart in m_CustomParts)
                 {
                     m_PartsIndex[customPart.Part] = 0;
                 }
@@ -89,48 +81,49 @@ namespace KidsTest
             AppSaveManager.Instance.SaveCharacterData(m_PartsIndex);
         }
 
-        public void SetNextPart(CustomCharacterParts part)
+        public void SetNextPart(CustomCharacterPartType partType)
         {
-            foreach (CustomParts customPart in m_CustomParts)
+            foreach (CustomizationPartsSO customPart in m_CustomParts)
             {
-                if (customPart.Part != part)
+                if (customPart.Part != partType)
                     continue;
 
-                int index = (m_PartsIndex[customPart.Part] + 1) % customPart.Meshes.Length;
-                Mesh mesh = customPart.Meshes[index].GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                int index = (m_PartsIndex[customPart.Part] + 1) % customPart.CustomParts.Length;
+                GameObject part = customPart.CustomParts[index];
+                Mesh mesh = part ? part.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh : null;
                 m_InstantiatedCharacter.SetNewPart(customPart.Part, mesh);
                 m_PartsIndex[customPart.Part] = index;
                 break;
             }
         }
 
-        public void SetPreviousPart(CustomCharacterParts part)
+        public void SetPreviousPart(CustomCharacterPartType partType)
         {
-            foreach (CustomParts customPart in m_CustomParts)
+            foreach (CustomizationPartsSO customPart in m_CustomParts)
             {
-                if (customPart.Part != part)
+                if (customPart.Part != partType)
                     continue;
 
-                int index = (m_PartsIndex[customPart.Part] - 1) % customPart.Meshes.Length;
-                Mesh mesh = customPart.Meshes[index].GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                int index = (m_PartsIndex[customPart.Part] - 1) % customPart.CustomParts.Length;
+                GameObject part = customPart.CustomParts[index];
+                Mesh mesh = part ? part.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh : null;
                 m_InstantiatedCharacter.SetNewPart(customPart.Part, mesh);
                 m_PartsIndex[customPart.Part] = index;
                 break;
             }
         }
 
-        public string GetCustomizationPartName(CustomCharacterParts part)
+        public string GetCustomizationPartName(CustomCharacterPartType part)
         {
             return part switch
             {
-                CustomCharacterParts.Body => "Body",
-                CustomCharacterParts.Accessory => "Accessory",
-                CustomCharacterParts.Glasses => "Glasses",
-                CustomCharacterParts.Hair => "Hair",
-                CustomCharacterParts.Hat => "Hat",
-                CustomCharacterParts.Pants => "Pants",
-                CustomCharacterParts.Outer => "Outer",
-                CustomCharacterParts.Shoes => "Shoes"
+                CustomCharacterPartType.Accessory => "Accessory",
+                CustomCharacterPartType.Glasses => "Glasses",
+                CustomCharacterPartType.Hair => "Hair",
+                CustomCharacterPartType.Hat => "Hat",
+                CustomCharacterPartType.Pants => "Pants",
+                CustomCharacterPartType.Outer => "Outer",
+                CustomCharacterPartType.Shoes => "Shoes"
             };
         }
     }
