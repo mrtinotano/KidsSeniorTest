@@ -2,6 +2,7 @@ using KidsTest.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace KidsTest
@@ -14,17 +15,32 @@ namespace KidsTest
 
         public void LoadLogInScene()
         {
-            UnitySceneManager.LoadScene(m_LogInScene);
+            StartCoroutine(LoadSceneAsync(m_LogInScene));
         }
 
         public void LoadLobbyScene()
         {
-            UnitySceneManager.LoadScene(m_LobbyScene);
+            StartCoroutine(LoadSceneAsync(m_LobbyScene));
         }
 
         public void LoadGameScene()
         {
-            UnitySceneManager.LoadScene(m_GameScene);
+            StartCoroutine(LoadSceneAsync(m_GameScene));
+        }
+
+        private IEnumerator LoadSceneAsync(string scene)
+        {
+            Scene previousScene = UnitySceneManager.GetActiveScene();
+
+            AsyncOperation op = UnitySceneManager.LoadSceneAsync(scene);
+            op.allowSceneActivation = true;
+
+            //Show a loding icon here or a Loading Scene
+
+            yield return op;
+
+            if (previousScene.IsValid())
+                yield return UnitySceneManager.UnloadSceneAsync(previousScene);
         }
     }
 }

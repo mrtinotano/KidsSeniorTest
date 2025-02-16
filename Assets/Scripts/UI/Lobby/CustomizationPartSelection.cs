@@ -20,11 +20,11 @@ namespace KidsTest
             m_PreviousSelectionButton.onClick.AddListener(()=> SelectPreviousPart());
             m_NextSelectionButton.onClick.AddListener(()=> SelectNextPart());
 
-            m_PartText.text = CustomizationManager.Instance.GetCustomizationPartName(m_Part);
+            m_PartText.text = CustomizationPartsSO.Instance.GetCustomizationPartName(m_Part);
         }
 
-        private void SelectNextPart() => CustomizationManager.Instance.SetNextPart(m_Part);
+        private void SelectNextPart() => CustomizationManager.Instance.SetNextCustomPart(m_Part);
 
-        private void SelectPreviousPart() => CustomizationManager.Instance.SetPreviousPart(m_Part);
+        private void SelectPreviousPart() => CustomizationManager.Instance.SetPreviousCustomPart(m_Part);
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ namespace KidsTest
     {
         [SerializeField] private TMP_InputField m_EmailField;
         [SerializeField] private TMP_InputField m_PasswordField;
-        [SerializeField] private Button m_LogInButton;
+        [SerializeField] private UIButton m_LogInButton;
         [SerializeField] private TMP_Text m_LogInMessage;
 
         private void Start()
@@ -20,7 +21,7 @@ namespace KidsTest
         {
             string message;
             
-            if (LogInManager.Instance.TryLogIn(m_EmailField.text, m_PasswordField.text, out message))
+            if (UserManager.Instance.TryLogIn(m_EmailField.text, m_PasswordField.text, out message))
             {
                 m_LogInButton.interactable = false;
                 m_LogInMessage.text = message;

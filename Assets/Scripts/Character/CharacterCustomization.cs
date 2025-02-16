@@ -1,39 +1,62 @@
-using System.Linq;
+using System;
 using UnityEngine;
 
 namespace KidsTest
 {
     public class CharacterCustomization : MonoBehaviour
     {
-        [System.Serializable]
-        private struct CustomizationPart
+        [Serializable]
+        private struct CharacterPart
         {
-            public CustomCharacterPartType Part;
+            public CustomCharacterPartType PartType;
             public SkinnedMeshRenderer PartMesh;
         }
 
-        [SerializeField] private CustomizationPart[] m_CustomizationParts;
-        
-        private void LoadCharacterCustomization()
-        {
+        [SerializeField] private CharacterPart[] m_CharacterParts;
 
+        private void Awake()
+        {
+            LoadCharacterCustomization();
         }
 
-        public void SetNewPart(CustomCharacterPartType part, Mesh mesh)
+        private void LoadCharacterCustomization()
         {
-            foreach (CustomizationPart customPart in m_CustomizationParts)
-            {
-                if (customPart.Part != part)
-                    continue;
+            CharacterDataSerialized charData = AppSaveManager.Instance.LoadCharacterData();
 
-                customPart.PartMesh.sharedMesh = mesh;
-                break;
+            if (charData != null)
+            {
+                SetCustomPart(CustomCharacterPartType.Accessory, charData.AccessoryIndex);
+                SetCustomPart(CustomCharacterPartType.Glasses, charData.GlassesIndex);
+                SetCustomPart(CustomCharacterPartType.Hair, charData.HairIndex);
+                SetCustomPart(CustomCharacterPartType.Hat, charData.HatIndex);
+                SetCustomPart(CustomCharacterPartType.Pants, charData.PantsIndex);
+                SetCustomPart(CustomCharacterPartType.Outer, charData.OuterIndex);
+                SetCustomPart(CustomCharacterPartType.Shoes, charData.ShoesIndex);
             }
         }
 
-        public void SetNewBodyColor()
+        public void SetCustomPart(CustomCharacterPartType partType, int partIndex)
         {
-            //m_CustomizationParts.Select(x => x.Part == )
+            foreach (CharacterPart part in m_CharacterParts)
+            {
+                if (part.PartType != partType)
+                    continue;
+
+                part.PartMesh.sharedMesh = CustomizationPartsSO.Instance.GetCustomPart(partType, partIndex);
+            }
+        }
+
+        public int GetCustomPartIndex(CustomCharacterPartType partType)
+        {
+            foreach (CharacterPart part in m_CharacterParts)
+            {
+                if (part.PartType != partType)
+                    continue;
+
+                return CustomizationPartsSO.Instance.GetCustomPartIndex(partType, part.PartMesh.sharedMesh);
+            }
+
+            return 0;
         }
     }
 }
