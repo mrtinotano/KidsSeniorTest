@@ -1046,7 +1046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff1d8be3c37f424793bfde40e6ba62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioClip: {fileID: 8300000, guid: 9dab1b7ea44ace148a5c1d4265b79db6, type: 3}
+  m_LevelID: 1
+  m_LobbyScene: SC_Lobby
 --- !u!1 &1139871930
 GameObject:
   m_ObjectHideFlags: 0

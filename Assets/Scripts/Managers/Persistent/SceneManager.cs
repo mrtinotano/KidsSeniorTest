@@ -9,23 +9,9 @@ namespace KidsTest
 {
     public class SceneManager : PersistentSingleton<SceneManager>
     {
-        [SerializeField, Scene] private string m_LogInScene; 
-        [SerializeField, Scene] private string m_LobbyScene; 
-        [SerializeField, Scene] private string m_GameScene;
-
-        public void LoadLogInScene()
+        public void LoadScene(string sceneName)
         {
-            StartCoroutine(LoadSceneAsync(m_LogInScene));
-        }
-
-        public void LoadLobbyScene()
-        {
-            StartCoroutine(LoadSceneAsync(m_LobbyScene));
-        }
-
-        public void LoadGameScene()
-        {
-            StartCoroutine(LoadSceneAsync(m_GameScene));
+            StartCoroutine(LoadSceneAsync(sceneName));
         }
 
         private IEnumerator LoadSceneAsync(string scene)

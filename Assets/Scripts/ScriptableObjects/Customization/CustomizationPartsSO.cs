@@ -14,7 +14,7 @@ namespace KidsTest
         Shoes
     }
 
-    [CreateAssetMenu(fileName = "Customization Parts", menuName = "KidsTest/Customiation Parts")]
+    [CreateAssetMenu(fileName = "SO_CustomizationParts", menuName = "Kids Test/Customiation Parts")]
     public class CustomizationPartsSO : ScriptableObjectSingleton<CustomizationPartsSO>
     {
         [System.Serializable]

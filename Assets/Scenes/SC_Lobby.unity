@@ -1480,6 +1480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CharacterPrefab: {fileID: 8169239453834850604, guid: d385b03216e05e6438d91d99f57a952d, type: 3}
   m_CharacterPlacement: {fileID: 342416878}
+  m_GameScene: SC_Game
 --- !u!4 &1460026470
 Transform:
   m_ObjectHideFlags: 0
@@ -2264,8 +2265,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 896627498}
+  - {fileID: 376663825}
   - {fileID: 342416878}
   - {fileID: 422700829}
   - {fileID: 500920343}
   - {fileID: 1460026470}
-  - {fileID: 376663825}

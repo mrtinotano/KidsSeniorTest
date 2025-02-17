@@ -12,6 +12,9 @@ namespace KidsTest
         [SerializeField] private CharacterCustomization m_CharacterPrefab;
         [SerializeField] private Transform m_CharacterPlacement;
 
+        [Space]
+        [SerializeField, Scene] private string m_GameScene;
+
         private CharacterCustomization m_InstantiatedCharacter;
 
         private Dictionary<CustomCharacterPartType, int> m_PartsIndex = new Dictionary<CustomCharacterPartType, int>();
@@ -38,6 +41,11 @@ namespace KidsTest
         private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene current)
         {
             AppSaveManager.Instance.SaveCharacterData(m_PartsIndex);
+        }
+
+        public void LoadGameScene()
+        {
+            SceneManager.Instance.LoadScene(m_GameScene);
         }
 
         public void SetNextCustomPart(CustomCharacterPartType partType)

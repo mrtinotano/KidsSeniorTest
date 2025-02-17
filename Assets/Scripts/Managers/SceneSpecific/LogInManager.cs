@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace KidsTest
 {
-    public class UserManager : PersistentSingleton<UserManager>
+    public class LogInManager : Singleton<LogInManager>
     {
+        [SerializeField, Scene] private string m_LobbyScene;
+
         public bool TryLogIn(string email, string password, out string logInMessage)
         {
             try
@@ -20,7 +22,7 @@ namespace KidsTest
             }
             catch (System.FormatException e)
             {
-                logInMessage = "Mail format is incorrect";
+                logInMessage = "Email format is incorrect";
                 return false;
             }
             catch (System.Exception e)
@@ -30,7 +32,7 @@ namespace KidsTest
             }
 
             logInMessage = "Log In Successful";
-            SceneManager.Instance.LoadLobbyScene();
+            SceneManager.Instance.LoadScene(m_LobbyScene);
 
             return true;
         }

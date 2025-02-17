@@ -9,7 +9,7 @@ namespace KidsTest
         {
             base.Awake();
 
-            onClick.AddListener(() => SceneManager.Instance.LoadGameScene());
+            onClick.AddListener(() => CustomizationManager.Instance.LoadGameScene());
         }
     }
 }

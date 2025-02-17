@@ -21,7 +21,7 @@ namespace KidsTest
         {
             string message;
             
-            if (UserManager.Instance.TryLogIn(m_EmailField.text, m_PasswordField.text, out message))
+            if (LogInManager.Instance.TryLogIn(m_EmailField.text, m_PasswordField.text, out message))
             {
                 m_LogInButton.interactable = false;
                 m_LogInMessage.text = message;
