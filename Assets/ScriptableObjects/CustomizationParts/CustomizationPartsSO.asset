@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a3c81a900afb0b4a9775af2a67052f1, type: 3}
-  m_Name: CustomizationParts
+  m_Name: CustomizationPartsSO
   m_EditorClassIdentifier: 
   m_CustomParts:
   - PartType: 0
