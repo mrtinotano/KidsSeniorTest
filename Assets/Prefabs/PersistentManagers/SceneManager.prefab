@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1013377985835659892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 471.79337, y: 209.54514, z: -2.5218542}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265d71693ab9be84da940d4988f5eae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LogInScene: LogInScene
-  m_LobbyScene: LobbyScene
-  m_GameScene: GameScene
+  m_LogInScene: 
+  m_LobbyScene: 
+  m_GameScene: 

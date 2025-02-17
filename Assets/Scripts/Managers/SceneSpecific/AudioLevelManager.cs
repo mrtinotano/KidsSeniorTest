@@ -13,28 +13,28 @@ namespace KidsTest
         }
 
         [SerializeField] private AudioClip m_AudioClip;
-        [SerializeField] private AudioSource m_AudioSource;
+
+        private AudioSource m_AudioSource;
 
         public AudioState CurrentAudioState { get; private set; } = AudioState.Stopped;
         public float AudioTime => m_AudioSource.time;
 
         public AudioClip PlayAudio()
         {
-            m_AudioSource.clip = m_AudioClip;
-            m_AudioSource.Play();
+            m_AudioSource = AudioManager.Instance.PlaySound(m_AudioClip);
             CurrentAudioState = AudioState.Playing;
             return m_AudioClip;
         }
 
         public void PauseAudio()
         {
-            m_AudioSource.Pause();
+            AudioManager.Instance.PauseSound(m_AudioSource);
             CurrentAudioState = AudioState.Paused;
         }
 
         public void UnPauseAudio()
         {
-            m_AudioSource.UnPause();
+            AudioManager.Instance.UnPauseSound(m_AudioSource);
             CurrentAudioState = AudioState.Playing;
         }
     }

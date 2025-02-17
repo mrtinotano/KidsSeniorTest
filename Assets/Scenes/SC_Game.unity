@@ -384,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 322779615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a7e7a9228dc8e7e4f978485a91f9f882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -419,6 +419,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  m_PressPunch: {x: -0.2, y: -0.2, z: -0.2}
+  m_PunchTime: 0.25
+  m_ButtonSound: {fileID: 8300000, guid: 48824f3d4206e2c40a99e51d6667f7a1, type: 3}
 --- !u!114 &322779618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,7 +1047,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AudioClip: {fileID: 8300000, guid: 9dab1b7ea44ace148a5c1d4265b79db6, type: 3}
-  m_AudioSource: {fileID: 807663229}
 --- !u!1 &1139871930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1688,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1729309530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a7e7a9228dc8e7e4f978485a91f9f882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1721,6 +1723,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  m_PressPunch: {x: -0.1, y: -0.1, z: -0.1}
+  m_PunchTime: 0.25
+  m_ButtonSound: {fileID: 8300000, guid: 48824f3d4206e2c40a99e51d6667f7a1, type: 3}
 --- !u!114 &1729309533
 MonoBehaviour:
   m_ObjectHideFlags: 0

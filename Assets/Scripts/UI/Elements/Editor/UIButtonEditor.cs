@@ -10,12 +10,14 @@ namespace KidsTest
     {
         private SerializedProperty m_PressPunch;
         private SerializedProperty m_PunchTime;
+        private SerializedProperty m_ButtonSound;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             m_PressPunch = serializedObject.FindProperty("m_PressPunch");
             m_PunchTime = serializedObject.FindProperty("m_PunchTime");
+            m_ButtonSound = serializedObject.FindProperty("m_ButtonSound");
         }
 
         public override void OnInspectorGUI()
@@ -26,6 +28,9 @@ namespace KidsTest
             serializedObject.Update();
             EditorGUILayout.PropertyField(m_PressPunch);
             EditorGUILayout.PropertyField(m_PunchTime);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(m_ButtonSound);
             serializedObject.ApplyModifiedProperties();
         }
     }

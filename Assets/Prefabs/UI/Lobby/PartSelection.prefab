@@ -92,6 +92,7 @@ MonoBehaviour:
       m_Calls: []
   m_PressPunch: {x: -0.1, y: -0.1, z: -0.1}
   m_PunchTime: 0.25
+  m_ButtonSound: {fileID: 8300000, guid: 48824f3d4206e2c40a99e51d6667f7a1, type: 3}
 --- !u!1 &5446709555271972596
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +493,7 @@ MonoBehaviour:
       m_Calls: []
   m_PressPunch: {x: -0.1, y: -0.1, z: -0.1}
   m_PunchTime: 0.25
+  m_ButtonSound: {fileID: 8300000, guid: 48824f3d4206e2c40a99e51d6667f7a1, type: 3}
 --- !u!1 &7011342066804790049
 GameObject:
   m_ObjectHideFlags: 0
