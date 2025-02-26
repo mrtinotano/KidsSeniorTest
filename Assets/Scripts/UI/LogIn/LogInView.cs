@@ -1,7 +1,5 @@
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace KidsTest
 {
@@ -12,26 +10,39 @@ namespace KidsTest
         [SerializeField] private UIButton m_LogInButton;
         [SerializeField] private TMP_Text m_LogInMessage;
 
-        private void Start()
+        private LogInViewModel m_ViewModel;
+
+        private readonly Color m_ErrorMessageColor = Color.red;
+        private readonly Color m_SuccessMessageColor = Color.green;
+
+        private void Awake()
         {
-            m_LogInButton.onClick.AddListener(()=> TryLogIn());
+            m_ViewModel = new LogInViewModel();
+            m_ViewModel.OnLogInSuccess += ShowLogInSuccessMessage;
+            m_ViewModel.OnLogInError += ShowLogInErrorMessage;
+
+            m_LogInButton.onClick.AddListener(()=> m_ViewModel.OnLogInSubmit());
+            m_EmailField.onValueChanged.AddListener((email)=> m_ViewModel.OnEmailFieldValueChanged(email));
+            m_PasswordField.onValueChanged.AddListener((password) => m_ViewModel.OnPasswordFieldValueChanged(password));
         }
 
-        private void TryLogIn()
+        private void OnDestroy()
         {
-            string message;
-            
-            if (LogInManager.Instance.TryLogIn(m_EmailField.text, m_PasswordField.text, out message))
-            {
-                m_LogInButton.interactable = false;
-                m_LogInMessage.text = message;
-                m_LogInMessage.color = Color.green;
-            }
-            else
-            {
-                m_LogInMessage.text = message;
-                m_LogInMessage.color = Color.red;
-            }
+            m_ViewModel.OnLogInSuccess -= ShowLogInSuccessMessage;
+            m_ViewModel.OnLogInError -= ShowLogInErrorMessage;
+        }
+
+        private void ShowLogInSuccessMessage(string message)
+        {
+            m_LogInButton.interactable = false;
+            m_LogInMessage.text = message;
+            m_LogInMessage.color = m_SuccessMessageColor;
+        }
+
+        private void ShowLogInErrorMessage(string message)
+        {
+            m_LogInMessage.text = message;
+            m_LogInMessage.color = m_ErrorMessageColor;
         }
     }
 }

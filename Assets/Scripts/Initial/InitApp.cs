@@ -9,7 +9,7 @@ namespace KidsTest
 
         private void Awake()
         {
-            SceneManager.Instance.LoadScene(m_LogInScene);
+            AppSceneManager.LoadScene(m_LogInScene, AppSceneManager.SceneLoadMode.Async);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ namespace KidsTest.Utils
         {
             get
             {
-                if (m_Instance == null)
+                if (m_Instance is null)
                 {
 #if UNITY_EDITOR
                     string[] guids = AssetDatabase.FindAssets($"t:{typeof(T)}");

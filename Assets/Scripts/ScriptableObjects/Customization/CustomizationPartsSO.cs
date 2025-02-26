@@ -43,7 +43,7 @@ namespace KidsTest
             return customMesh;
         }
 
-        public int GetCustomPartLength(CustomCharacterPartType partType)
+        public int GetCustomPartMeshLength(CustomCharacterPartType partType)
         {
             int length = 0;
 

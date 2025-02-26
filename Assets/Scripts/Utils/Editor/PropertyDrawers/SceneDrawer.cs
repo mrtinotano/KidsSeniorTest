@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,12 +13,12 @@ namespace KidsTest.Utils
             {
                 var sceneObject = GetSceneObject(property.stringValue);
                 var scene = EditorGUI.ObjectField(position, label, sceneObject, typeof(SceneAsset), true);
-                if (scene == null)
+                if (scene is null)
                     property.stringValue = string.Empty;
                 else if (scene.name != property.stringValue)
                 {
                     var sceneObj = GetSceneObject(scene.name);
-                    if (sceneObj == null)
+                    if (sceneObj is null)
                         Debug.LogWarning($"The scene {scene.name} cannot be used. To use this scene add it to the build settings for the project");
                     else
                         property.stringValue = scene.name;

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,9 +11,13 @@ namespace KidsTest
         [Header("Button Press")]
         [SerializeField] private Vector3 m_PressPunch;
         [SerializeField] private float m_PunchTime;
+        [SerializeField] private int m_PunchVibrato = 1;
+        [SerializeField] private int m_PunchElasticity = 1;
 
         [Header("Button Audio")]
         [SerializeField] private AudioClip m_ButtonSound;
+
+        public Action OnButtonPressed;
 
         public override void OnSubmit(BaseEventData eventData)
         {
@@ -34,8 +39,8 @@ namespace KidsTest
 
         private void DoPunch()
         {
-            transform.DOKill();
-            transform.DOPunchScale(m_PressPunch, m_PunchTime, 1);
+            transform.DOKill(true);
+            transform.DOPunchScale(m_PressPunch, m_PunchTime, m_PunchVibrato, m_PunchElasticity);
         }
     }
 }
