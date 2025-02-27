@@ -22,9 +22,16 @@ namespace KidsTest
             EventManager<ReturnToLobbyEvent>.AddListener(ReturnToLobby);
         }
 
+        private void OnDestroy()
+        {
+            EventManager<PlayAudioEvent>.RemoveListener(PlayLevelAudio);
+            EventManager<ReturnToLobbyEvent>.RemoveListener(ReturnToLobby);
+        }
+
         private void PlayLevelAudio(PlayAudioEvent eventData)
         {
-            LevelConfigSO config = AppLevelsSO.Instance.GetLevelConfig(m_LevelID);
+            if (!AppLevelsSO.Instance.GetLevelConfig(m_LevelID, out LevelConfigSO config))
+                return;
 
             if (config is not AudioLevelConfigSO audioLevelConfig)
                 return;

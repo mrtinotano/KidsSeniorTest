@@ -37,8 +37,10 @@ namespace KidsTest
             }
         }
 
-        public static CharacterDataSerialized LoadCharacterData()
+        public static bool LoadCharacterData(out CharacterDataSerialized charData)
         {
+            charData = null;
+
             try
             {
                 if (File.Exists(SaveFilePath))
@@ -46,10 +48,10 @@ namespace KidsTest
                     FileStream dataStream = new FileStream(SaveFilePath, FileMode.Open);
 
                     BinaryFormatter converter = new BinaryFormatter();
-                    CharacterDataSerialized charData = converter.Deserialize(dataStream) as CharacterDataSerialized;
+                    charData = converter.Deserialize(dataStream) as CharacterDataSerialized;
                     dataStream.Close();
 
-                    return charData;
+                    return true;
                 }
             }
             catch (Exception e)
@@ -57,7 +59,7 @@ namespace KidsTest
                 Debug.LogException(e);
             }
 
-            return null;
+            return false;
         }
     }
 

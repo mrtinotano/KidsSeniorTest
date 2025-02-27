@@ -8,17 +8,20 @@ namespace KidsTest
     {
         [SerializeField] private LevelConfigSO[] m_LevelsConfigs;
 
-        public LevelConfigSO GetLevelConfig(int levelID)
+        public bool GetLevelConfig(int levelID, out LevelConfigSO config)
         {
+            config = null;
+
             foreach (LevelConfigSO levelConfig in m_LevelsConfigs)
             {
                 if (levelConfig.LevelID != levelID)
                     continue;
 
-                return levelConfig;
+                config = levelConfig;
+                return true;
             }
 
-            return null;
+            return false;
         }
     }
 }

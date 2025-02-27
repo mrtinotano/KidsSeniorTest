@@ -24,6 +24,11 @@ namespace KidsTest
             EventManager<LoadGameSceneEvent>.AddListener(LoadGameScene);
         }
 
+        private void OnDestroy()
+        {
+            EventManager<LoadGameSceneEvent>.RemoveListener(LoadGameScene);
+        }
+
         private void LoadGameScene(LoadGameSceneEvent eventData)
         {
             m_InstantiatedCharacter.SaveCustomization();

@@ -46,9 +46,7 @@ namespace KidsTest
 
         private void LoadCharacterCustomization()
         {
-            CharacterDataSerialized charData = AppSaveManager.LoadCharacterData();
-
-            if (charData is not null)
+            if (AppSaveManager.LoadCharacterData(out CharacterDataSerialized charData))
             {
                 SetCustomPart(CustomCharacterPartType.Accessory, charData.AccessoryIndex);
                 SetCustomPart(CustomCharacterPartType.Glasses, charData.GlassesIndex);

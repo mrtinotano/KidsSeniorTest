@@ -12,6 +12,11 @@ namespace KidsTest
             EventManager<LogInSuccessEvent>.AddListener(LogInSuccessful); 
         }
 
+        private void OnDestroy()
+        {
+            EventManager<LogInSuccessEvent>.RemoveListener(LogInSuccessful);
+        }
+
         private void LogInSuccessful(LogInSuccessEvent eventData)
         {
             AppSceneManager.LoadScene(m_LobbyScene, AppSceneManager.SceneLoadMode.Async);
