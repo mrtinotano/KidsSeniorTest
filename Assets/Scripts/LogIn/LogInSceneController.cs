@@ -5,8 +5,6 @@ namespace KidsTest
 {
     public class LogInSceneController : MonoBehaviour
     {
-        [SerializeField, Scene] private string m_LobbyScene;
-
         private void Awake()
         {
             EventManager<LogInSuccessEvent>.AddListener(LogInSuccessful); 
@@ -19,7 +17,7 @@ namespace KidsTest
 
         private void LogInSuccessful(LogInSuccessEvent eventData)
         {
-            AppSceneManager.LoadScene(m_LobbyScene, AppSceneManager.SceneLoadMode.Async);
+            AppSceneManager.LoadScene(AppScenesSO.Instance.LobbyScene, AppSceneManager.SceneLoadMode.Async);
         }
     }
 }

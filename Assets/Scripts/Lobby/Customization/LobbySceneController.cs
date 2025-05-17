@@ -1,6 +1,5 @@
 using KidsTest.Utils;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace KidsTest
 {
@@ -11,9 +10,6 @@ namespace KidsTest
         [Header("Character")]
         [SerializeField] private CharacterCustomization m_CharacterPrefab;
         [SerializeField] private Transform m_CharacterPlacement;
-
-        [Space]
-        [SerializeField, Scene] private string m_GameScene;
 
         private CharacterCustomization m_InstantiatedCharacter;
 
@@ -32,7 +28,7 @@ namespace KidsTest
         private void LoadGameScene(LoadGameSceneEvent eventData)
         {
             m_InstantiatedCharacter.SaveCustomization();
-            AppSceneManager.LoadScene(m_GameScene, AppSceneManager.SceneLoadMode.Async);
+            AppSceneManager.LoadScene(AppScenesSO.Instance.GameScene, AppSceneManager.SceneLoadMode.Async);
         }
     }
 }

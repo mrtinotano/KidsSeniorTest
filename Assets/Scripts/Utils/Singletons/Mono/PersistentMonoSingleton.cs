@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KidsTest.Utils
 {
-    public class PersistentSingleton<T> : Singleton<T> where T : Component
+    public class PersistentMonoSingleton<T> : MonoSingleton<T> where T : Component
     {
         protected override void Awake()
         {

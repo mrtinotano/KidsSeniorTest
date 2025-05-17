@@ -11,7 +11,7 @@ namespace KidsTest.Utils
         {
             get
             {
-                if (m_Instance is null)
+                if (m_Instance == null)
                 {
 #if UNITY_EDITOR
                     string[] guids = AssetDatabase.FindAssets($"t:{typeof(T)}");

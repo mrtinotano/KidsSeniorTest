@@ -14,8 +14,6 @@ namespace KidsTest
 
     public class AudioLevelController : LevelController
     {
-        [SerializeField, Scene] private string m_LobbyScene;
-
         protected void Awake()
         {
             EventManager<PlayAudioEvent>.AddListener(PlayLevelAudio);
@@ -49,7 +47,7 @@ namespace KidsTest
 
         private void ReturnToLobby(ReturnToLobbyEvent eventData)
         {
-            AppSceneManager.LoadScene(m_LobbyScene, AppSceneManager.SceneLoadMode.Async);
+            AppSceneManager.LoadScene(AppScenesSO.Instance.LobbyScene, AppSceneManager.SceneLoadMode.Async);
         }
     }
 }
